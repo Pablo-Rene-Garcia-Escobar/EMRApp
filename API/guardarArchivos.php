@@ -6,7 +6,7 @@ error_reporting(E_ERROR | E_PARSE);
 
 switch ($_POST['ROOT']) {
     case 'foto_paciente':
-        $RUTA = '../adjunto/FotosPacientes/';
+        $RUTA = 'C:/xampp/htdocs/EMRApp/adjunto/FotosPacientes/';
         break;
 }
 

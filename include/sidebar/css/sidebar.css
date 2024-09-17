@@ -6,9 +6,9 @@
 
 body, html {
     height: 100%;
-    overflow: hidden;
+    /*overflow: hidden;*/
     font-family: Arial, sans-serif;
-    background-color: #c1d9f0;
+    background-color: #c1d9f0 !important;
 }
 
 .sidebar-wrapper {

@@ -3,12 +3,6 @@
 }
 
 .card-header {
-    /*background: rgb(255,115,253);
-    background: linear-gradient(90deg, rgba(255,115,253,0.6993172268907564) 0%, rgba(210,177,255,1) 15%, rgba(139,255,182,1) 34%, rgba(0,255,190,1) 55%, rgba(0,212,255,1) 100%);
-    */
-    /*background: rgb(115,117,255);
-    background: linear-gradient(90deg, rgba(115,117,255,1) 0%, rgba(165,137,204,1) 15%, rgba(139,255,182,1) 34%, rgba(0,255,190,1) 55%, rgba(0,212,255,1) 100%);
-    */
     background: rgb(95,97,255);
     background: linear-gradient(45deg, rgba(95,97,255,1) 0%, rgba(151,201,205,1) 26%, rgba(139,255,182,1) 42%, rgba(0,255,190,1) 60%, rgba(0,212,255,1) 100%);
     display    : 0;

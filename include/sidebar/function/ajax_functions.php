@@ -6,8 +6,6 @@ try {
         $v_Func = $_GET["FUNC"];
         if ($v_Func == "getModulos") {
             echo json_encode(getModulos());
-        } else if ($v_Func == "iniciarSesion") {
-            echo json_encode(iniciarSesion());
         }
     }
 } catch (Exception $e) {
@@ -39,6 +37,8 @@ function getModulos()
                                 R.MDL_ID = M.MDL_ID
                             WHERE
                                 ROL_ID = :rol_id
+                            ORDER BY
+                                M.MDL_ID ASC
                             ";
 
             $params = array(
@@ -57,6 +57,7 @@ function getModulos()
             return $respuesta;
 
         } else {
+            $respuesta['estado'] = 2;
             throw new Exception("El usuario no tiene un rol establecido.");
         }
     } catch (Exception $e) {

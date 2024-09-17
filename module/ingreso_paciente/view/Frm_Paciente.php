@@ -11,7 +11,7 @@
     <link rel="icon" type="image/webp" href="/EMRApp/include/Images/esculapio1.webp">
   </head>
   <body>
-    <div id="app">
+    <div id="app2">
       <form class="needs-validation" action="" novalidate>
       <div class="card" style="z-index: 0 !important;">
         <div class="card-header" style="padding: 12px;">

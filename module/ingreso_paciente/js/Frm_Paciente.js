@@ -4,7 +4,7 @@ var Headers = {
   form: { header: 'Content-Type', value: 'application/x-www-form-urlencoded' }
 };
 
-//const { createApp } = Vue;
+const { createApp } = Vue;
 
 const app = createApp({
   directives: {
@@ -93,6 +93,8 @@ const app = createApp({
 
           if (data2 && data2.archivo != "error") {
             this.paciente.foto = data2[0].archivo;
+          } else {
+            this.modalErrorApi(data2.message);
           }
 
           this.paciente.correlativo = data.corr;
@@ -100,7 +102,7 @@ const app = createApp({
             paciente: this.paciente,
             datClinico: this.datClinico,
           });
-  
+          console.log(this.paciente)
           var requestOptions = {
             method: "POST",
             headers: { "Content-Type": "application/json; charset=utf-8" },
@@ -179,7 +181,7 @@ const app = createApp({
       return new Promise((resolve, reject) => {
         $.ajax({
             type: 'POST',
-            url: '../../../API/guardarArchivos.php',
+            url: '/EMRApp/API/guardarArchivos.php',
             data: formData,
             processData: false,
             contentType: false,
@@ -193,10 +195,9 @@ const app = createApp({
             },
             error: function(request, status, error) {
                 // Manejar errores
+                console.log(request.responseText);
+                console.log(JSON.parse(request.responseText));                
                 var respuestaAPI = JSON.parse(request.responseText);
-                console.log(respuestaAPI);
-                console.log(status);
-                console.log(error);
                 reject(respuestaAPI); // Devuelve el error con reject
             }
         });
@@ -285,4 +286,4 @@ const app = createApp({
     },
   },
 });
-app.mount('#app');
+app.mount('#app2');
