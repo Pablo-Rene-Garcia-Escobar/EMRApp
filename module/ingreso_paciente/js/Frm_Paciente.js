@@ -86,16 +86,13 @@ const app = createApp({
 
         var data = await this.getKeys();
       
-        if (data && data.estado) {     
+        if (data && data.estado) {         
 
           var data2 = await this.guardarFoto(this.paciente.docId + '-' + data.corr);
-          
 
-          if (data2 && data2.archivo != "error") {
-            this.paciente.foto = data2[0].archivo;
-          } else {
-            this.modalErrorApi(data2.message);
-          }
+          if (!data2 || !data2.archivo || data2.archivo == "error") {
+            this.paciente.foto = null;
+          } 
 
           this.paciente.correlativo = data.corr;
           var raw = JSON.stringify({
@@ -166,15 +163,21 @@ const app = createApp({
     guardarFoto: async function (nombre) {
       const formData = new FormData();
       const fileInputs = document.querySelectorAll('#formFile');
+      let archivoCargado = false;
       
 
       fileInputs.forEach(fileLput => {
           // Añade el archivo de cada elemento al FormData
           if (fileLput.files && fileLput.files.length > 0) {
+              archivoCargado = true;
               formData.append('ARCHIVO[]', fileLput.files[0]);
               formData.append('fileName[]', nombre);
           }
       });
+
+      if (!archivoCargado) {
+        return;
+      }
       
       formData.append('ROOT', 'foto_paciente');
       
@@ -198,6 +201,13 @@ const app = createApp({
                 console.log(request.responseText);
                 console.log(JSON.parse(request.responseText));                
                 var respuestaAPI = JSON.parse(request.responseText);
+
+                if (respuestaAPI && respuestaAPI.archivo && respuestaAPI.archivo != "error") {
+                  this.paciente.foto = data2[0].archivo;
+                } else {
+                  this.modalErrorApi(data2.message);
+                }
+
                 reject(respuestaAPI); // Devuelve el error con reject
             }
         });
@@ -286,4 +296,4 @@ const app = createApp({
     },
   },
 });
-app.mount('#app2');
+app.mount('#app');

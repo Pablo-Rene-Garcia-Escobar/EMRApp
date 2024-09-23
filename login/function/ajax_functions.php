@@ -1,5 +1,4 @@
 <?php
-session_start();
 // Permitir solicitudes desde cualquier origen (para desarrollo, usa con precaución)
 header("Access-Control-Allow-Origin: *");
 // Permitir ciertos métodos HTTP

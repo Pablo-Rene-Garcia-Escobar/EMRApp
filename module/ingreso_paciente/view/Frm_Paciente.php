@@ -1,17 +1,16 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>EMRApp</title>
 
     <link rel="stylesheet" href="/EMRApp/include/css_lib/bootstrap/5.0.2.css" />
-    <link rel="stylesheet" href="/EMRApp/include/css_lib/dataTable/2.1.0.css" />
     <link rel="stylesheet" href="/EMRApp/module/ingreso_paciente/css/Frm_Paciente.css">
     <link rel="icon" type="image/webp" href="/EMRApp/include/Images/esculapio1.webp">
   </head>
   <body>
-    <div id="app2">
+    <div id="app">
       <form class="needs-validation" action="" novalidate>
       <div class="card" style="z-index: 0 !important;">
         <div class="card-header" style="padding: 12px;">
@@ -252,7 +251,6 @@
 
     <script src="/EMRApp/include/js_lib/JQuery/3.7.1.js"></script>
     <script src="/EMRApp/include/js_lib/bootstrap/5.0.2.js"></script>
-    <!--<script src="../../../js_lib/dataTable/2.1.0.js"></script>-->
     <script src="/EMRApp/include/js_lib/sweetAlert2/11.12.3.js"></script>
     <script src="/EMRApp/include/js_lib/VUEjs/3.4.33.js"></script>
     <script src="/EMRApp/module/ingreso_paciente/js/Frm_Paciente.js"></script>

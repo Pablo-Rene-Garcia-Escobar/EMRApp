@@ -8,8 +8,9 @@
     <link
       rel="icon"
       type="image/webp"
-      href="../include/Images/esculapio1.webp"
+      href="/EMRApp/include/Images/esculapio1.webp"
     />
+    
     <link rel="stylesheet" href="css/login.css" />
   </head>
   <body>

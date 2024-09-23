@@ -178,6 +178,11 @@ function guardarPaciente() {
             :ec_id
             )";
 
+
+        if(!$paciente['foto']) {
+            $paciente['foto'] = null;
+        }
+
         // Parámetros de la consulta
         $params = array(
             ':pac_corr' => $paciente['correlativo'],
