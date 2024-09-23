@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EMRApp</title>
     <link rel="stylesheet" href="/EMRApp/include/sidebar/css/sidebar.css">
+    <link rel="icon" type="image/webp" href="/EMRApp/include/Images/esculapio1.webp">
+    <link rel="stylesheet" href="/EMRApp/include/css_lib/general.css">
 </head>
 <body>
     <div id="app1">
