@@ -262,6 +262,7 @@ function guardarPaciente() {
         }
 
         _queryCommit($conexion);
+        oci_close($conexion);
 
     } catch (Exception $e) {
         http_response_code(500);

@@ -90,8 +90,8 @@ const app = createApp({
 
           var data2 = await this.guardarFoto(this.paciente.docId + '-' + data.corr);
 
-          if (!data2 || !data2.archivo || data2.archivo == "error") {
-            this.paciente.foto = null;
+          if (data2 && data2[0] && data2[0].archivo && data2[0].archivo != "error") {
+            this.paciente.foto = data2[0].archivo;
           } 
 
           this.paciente.correlativo = data.corr;
@@ -197,16 +197,9 @@ const app = createApp({
                 resolve(respuestas); // Devuelve la respuesta con resolve
             },
             error: function(request, status, error) {
-                // Manejar errores
-                console.log(request.responseText);
-                console.log(JSON.parse(request.responseText));                
+                // Manejar errores               
                 var respuestaAPI = JSON.parse(request.responseText);
-
-                if (respuestaAPI && respuestaAPI.archivo && respuestaAPI.archivo != "error") {
-                  this.paciente.foto = data2[0].archivo;
-                } else {
-                  this.modalErrorApi(data2.message);
-                }
+                this.mostrarAnimacion = false;
 
                 reject(respuestaAPI); // Devuelve el error con reject
             }
@@ -277,7 +270,7 @@ const app = createApp({
         icon: "error",
         showConfirmButton: false,
         timer: 5000,
-        position: "top",
+        position: "top-end",
         toast: true,
         width: "auto",
       });
@@ -289,7 +282,7 @@ const app = createApp({
         icon: "success",
         showConfirmButton: false,
         timer: 3000,
-        position: "top",
+        position: "top-end",
         toast: true,
         width: "17.8rem",
       });
