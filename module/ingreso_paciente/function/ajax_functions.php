@@ -276,7 +276,7 @@ function guardarPaciente() {
 
     return array(
         'estado' => true,
-        'desc' => 'Información del paciente guardado con éxito',
+        'desc' => 'Paciente ingresado correctamente.',
     );
 
 }

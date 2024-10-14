@@ -241,4 +241,19 @@ function _queryCommit($conexion){
     oci_commit($conexion);	
     oci_close($conexion);
 }
+
+function validarPermiso($mdl_id) {
+
+    $rol_id = $_SESSION['rol_id'];
+
+    $strConsulta = "SELECT COUNT(*) CANTIDAD FROM EMR.EMR_ACCE_MODULOROL WHERE ROL_ID = $rol_id AND MDL_ID = $mdl_id";
+
+    $arrConsulta = _query($strConsulta);
+
+    if ($arrConsulta[0]["CANTIDAD"] >= 1) {
+        return true;
+    } else {
+        return false;
+    }
+}
 ?>

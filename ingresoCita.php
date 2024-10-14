@@ -3,12 +3,12 @@ session_start();
 require_once "include/sidebar/sidebar.php";
 require_once "core_functions/core_functions.php";
 
-if (validarPermiso(2)){
+if (validarPermiso(3)){
 ?>
 
 <div class="content-container">
     <?php
-    include 'module/consulta_pacientes/view/Dtl_Paciente.php';
+    include 'module/ingreso_cita/view/Frm_Cita.php';
     ?>
 </div>
 

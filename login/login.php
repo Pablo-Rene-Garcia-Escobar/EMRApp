@@ -4,14 +4,14 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>EMRApp</title>
-    <link rel="stylesheet" href="../include/css_lib/bootstrap/5.0.2.css" />
+    <link rel="stylesheet" href="/EMRApp/include/css_lib/bootstrap/5.0.2.css" />
     <link
       rel="icon"
       type="image/webp"
       href="/EMRApp/include/Images/esculapio1.webp"
     />
     
-    <link rel="stylesheet" href="css/login.css" />
+    <link rel="stylesheet" href="/EMRApp/login/css/login.css" />
   </head>
   <body>
     <!-- Form-->
@@ -159,10 +159,10 @@
       </div>
     </div>
 
-    <script src="../include/js_lib/JQuery/3.7.1.js"></script>
-    <script src="../include/js_lib/bootstrap/5.0.2.js"></script>
-    <script src="../include/js_lib/sweetAlert2/11.12.3.js"></script>
-    <script src="../include/js_lib/VUEjs/3.4.33.js"></script>
-    <script src="js/login.js"></script>
+    <script src="/EMRApp/include/js_lib/JQuery/3.7.1.js"></script>
+    <script src="/EMRApp/include/js_lib/bootstrap/5.0.2.js"></script>
+    <script src="/EMRApp/include/js_lib/sweetAlert2/11.12.3.js"></script>
+    <script src="/EMRApp/include/js_lib/VUEjs/3.4.33.js"></script>
+    <script src="/EMRApp/login/js/login.js"></script>
   </body>
 </html>
