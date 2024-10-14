@@ -262,6 +262,7 @@ function guardarPaciente() {
         }
 
         _queryCommit($conexion);
+        oci_close($conexion);
 
     } catch (Exception $e) {
         http_response_code(500);
@@ -275,7 +276,7 @@ function guardarPaciente() {
 
     return array(
         'estado' => true,
-        'desc' => 'Información del paciente guardado con éxito',
+        'desc' => 'Paciente ingresado correctamente.',
     );
 
 }

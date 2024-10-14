@@ -1,3 +1,9 @@
+<?php
+if (!(isset($_SESSION['usuario_logeado']) and $_SESSION['usuario_logeado'])){
+    include "login/login.php";
+    exit;
+    }
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>

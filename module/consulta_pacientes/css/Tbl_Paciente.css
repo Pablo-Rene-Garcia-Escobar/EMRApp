@@ -4,3 +4,7 @@
     overflow-wrap: break-word; /* Para un mejor soporte en navegadores */
     text-align: left; /* Alinear el texto a la izquierda */
 }
+
+.form-title h2 {
+    font-weight: lighter;
+}

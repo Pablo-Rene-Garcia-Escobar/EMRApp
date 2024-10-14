@@ -1,4 +1,4 @@
-var apiEndpoint = 'http://localhost/EMRApp/module/ingreso_paciente/function/ajax_functions.php?FUNC=';
+var apiEndpoint = 'http://localhost/EMRApp/module/ingreso_cita/function/ajax_functions.php?FUNC=';
 var Headers = {
   json: { header: 'Content-Type', value: 'application/json' },
   form: { header: 'Content-Type', value: 'application/x-www-form-urlencoded' }
@@ -15,43 +15,36 @@ const app = createApp({
     },
   },
   mounted: function () {
-    this.getEstCivil();
+    /*this.getEstCivil();
     this.getTipoSangre();
-    this.getNacionalidad();
+    this.getNacionalidad();*/
   },
   data() {
     return {
       mostrarAnimacion: false,
       required: true,
-      estadoCivilOptions: {},
-      tipoSangreOptions: {},
-      nacOptions: {},
-      paciente: {
-        nombre1: "",
-        nombre2: "",
-        nombre3: "",
-        apellido1: "",
-        apellido2: "",
-        apellidoC: "",
-        docId: "",
-        fecNac: null,
-        foto: "",
-        ocupacion: "",
-        nacionalidadId: "",
-        estadoCivil: "",
-        telefono: null,
-        correo: "",
-        telEmergencia: null,
-        direccion: "",
-        correlativo: "",
+      /*estadoCivilOptions: {},
+      tipoSangreOptions: {},*/
+      tipoCitaOptions: {},
+      cita: {
+        motivo: "",
+        diagnostico: "",
+        tratamiento: "",
+        observaciones: "",
+        cita_seguimiento: "N",
+        arch_receta: "",
+        corr_padre: null,
+        anio_padre: null,
+        pac_corr: "",
+        pac_docnum: "",
+        tc_id: "",
       },
       datClinico: {
-        genero: 1,
         pesoLB: "",
         altura: "",
-        tipoSangre: "",
         presionArt: "",
         freqCardiaca: "",
+        medGlucosa: "",
       },
     };
   },

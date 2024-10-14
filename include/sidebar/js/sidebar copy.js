@@ -69,7 +69,7 @@ const app1 = createApp({
         icon: "error",
         showConfirmButton: false,
         timer: 5000,
-        position: "top",
+        position: "top-end",
         toast: true,
         width: "auto",
       });
@@ -94,7 +94,7 @@ const app1 = createApp({
         icon: "info",
         showConfirmButton: false,
         timer: 5000,
-        position: "top",
+        position: "top-end",
         toast: true,
         width: "auto",
       });

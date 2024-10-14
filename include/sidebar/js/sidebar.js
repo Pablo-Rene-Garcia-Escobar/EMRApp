@@ -71,7 +71,7 @@ document.addEventListener('DOMContentLoaded', function() {
           icon: "error",
           showConfirmButton: false,
           timer: 5000,
-          position: "top",
+          position: "top-end",
           toast: true,
           width: "auto",
       });
@@ -84,7 +84,7 @@ document.addEventListener('DOMContentLoaded', function() {
           icon: "info",
           showConfirmButton: false,
           timer: 5000,
-          position: "top",
+          position: "top-end",
           toast: true,
           width: "auto",
       });

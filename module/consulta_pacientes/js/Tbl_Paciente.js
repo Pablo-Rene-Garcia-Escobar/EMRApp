@@ -66,7 +66,7 @@ const app = createApp({
         icon: "error",
         showConfirmButton: false,
         timer: 5000,
-        position: "top",
+        position: "top-end",
         toast: true,
         width: "auto",
       });
@@ -78,7 +78,7 @@ const app = createApp({
         icon: "success",
         showConfirmButton: false,
         timer: 3000,
-        position: "top",
+        position: "top-end",
         toast: true,
         width: "17.8rem",
       });
