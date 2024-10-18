@@ -164,7 +164,7 @@
 
                     <div class="form-seccion-3">
                         <div class="form-title">
-                            <h2>Datos Clínicos</h2>
+                            <h2>Datos Vitales y Biométricos</h2>
                             <div class="mb-3">
                                 <div class="row">
 
@@ -238,7 +238,8 @@
 
                 <div class="card-footer text-center">
                     <div v-if="disabled">
-                        <button type="button" class="btn btn-outline-primary" @click="disabled=false">Editar</button>
+                        <button type="button" style="margin-right: 5px;"  class="btn btn-outline-primary" @click="disabled=false">Editar</button>
+                        <button type="button" style="margin-left: 5px;"  class="btn btn-outline-secondary" @click="ingresarCita">Ingresar Cita</button>
                     </div>
                     <div v-else>
                         <button type="button" class="btn btn-outline-success" style="margin-right: 5px;" @click="updPaciente">Actualizar</button>

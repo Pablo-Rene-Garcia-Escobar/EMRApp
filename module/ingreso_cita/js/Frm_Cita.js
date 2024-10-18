@@ -14,17 +14,65 @@ const app = createApp({
       },
     },
   },
-  mounted: function () {
-    /*this.getEstCivil();
-    this.getTipoSangre();
-    this.getNacionalidad();*/
+  mounted: function () { },
+  computed: {
+    // Computed que actualiza el motivo del textarea
+    selectedCitaDesc() {
+      // Encuentra la opción seleccionada basándose en el TC_ID
+      if (this.cita.tc_id) {
+        const selectedOption = this.tipoCitaOptions.find(option => option.TC_ID === this.cita.tc_id);
+        return selectedOption ? selectedOption.TC_DESC : '';  // Si hay una opción seleccionada, retorna la descripción
+      }
+      
+    }
+  },
+  watch: {
+    'cita.tc_id'(newValue, oldValue){
+      if (newValue == 5) {
+        this.cita.cita_seguimiento = "S";
+        this.citaSeguimiento = true;
+      } else {
+        this.cita.cita_seguimiento = "N";
+        this.cita.corr_padre = "";
+        this.cita.anio_padre = "";
+        this.disabledCita = false;
+        this.citaSeguimiento = false;
+      }
+    },
+  },
+  created() {
+    const queryParams = new URLSearchParams(window.location.search);
+    if (queryParams.get('pac_corr')) {
+      this.cita.pac_corr = queryParams.get('pac_corr');
+    }
+
+    if (queryParams.get('pac_docnum')) {
+      this.cita.pac_docnum = queryParams.get('pac_docnum');
+    }
+
+    if (queryParams.get('cm_corr')) {
+      this.cita.corr_padre = queryParams.get('cm_corr');
+    }
+
+    if (queryParams.get('cm_anio')) {
+      this.cita.anio_padre = queryParams.get('cm_anio');
+    }
+
+    if (this.cita.anio_padre && this.cita.corr_padre) {
+      this.cita.tc_id = 5;
+    }
+
+    this.getPaciente(this.cita.pac_corr,this.cita.pac_docnum);
+    this.disabledCitaM();
+    this.getTipoCita();
   },
   data() {
     return {
       mostrarAnimacion: false,
       required: true,
-      /*estadoCivilOptions: {},
-      tipoSangreOptions: {},*/
+      disabled: false,
+      disabledCita: false,
+      citaSeguimiento: false,
       tipoCitaOptions: {},
       cita: {
         motivo: "",
@@ -32,9 +80,9 @@ const app = createApp({
         tratamiento: "",
         observaciones: "",
         cita_seguimiento: "N",
-        arch_receta: "",
-        corr_padre: null,
-        anio_padre: null,
+        arch_receta: null,
+        corr_padre: "",
+        anio_padre: "",
         pac_corr: "",
         pac_docnum: "",
         tc_id: "",
@@ -46,10 +94,77 @@ const app = createApp({
         freqCardiaca: "",
         medGlucosa: "",
       },
+      datosPaciente: {},
+
     };
   },
-  watch: {},
   methods: {
+    getPaciente: async function (corr,docnum) {
+      if (!corr || !docnum) {        
+        return;
+      }
+
+      var raw = JSON.stringify({
+        pac_corr: corr,
+        pac_docnum: docnum,
+      });
+
+      var requestOptions = {
+        method: "POST",
+        headers: { "Content-Type": "application/json; charset=utf-8" },
+        body: raw,
+        redirect: "follow",
+      };
+
+      try {
+        this.mostrarAnimacion = true;
+        fetch(apiEndpoint + 'getPaciente',requestOptions)
+            .then(response => {         
+              return response.json();
+            })
+            .then(respuesta => {
+              if (respuesta.estado) {
+                this.datosPaciente = respuesta.desc;
+                this.disabled = true;
+                this.modalSuccess("Paciente obtenido con éxito.");
+              } else {
+                this.datosPaciente = {};
+                this.modalError(respuesta.desc);
+              }
+              this.mostrarAnimacion = false;
+            })
+            .catch((error) => {
+              this.modalErrorApi(error);
+              this.mostrarAnimacion = false;
+            });
+      } catch (error) {
+        this.modalErrorApi(error);
+        this.mostrarAnimacion = false;
+      } finally {
+        this.mostrarAnimacion = false;
+      }
+    },
+    disabledCitaM: function () {
+      if (this.cita.corr_padre && this.cita.anio_padre) {
+        this.disabledCita = true;
+      }
+    },
+    getTipoCita: function () {
+      var requestOptions = {
+        method: "POST",
+        headers: { "Content-Type": "application/json; charset=utf-8" },
+        redirect: "follow",
+      };
+
+      fetch(apiEndpoint + 'getTipoCita',requestOptions)
+        .then(response => {
+          return response.json();
+        })
+        .then(datos => {
+          this.tipoCitaOptions = datos;          
+        })
+        .catch(error => console.error('Error al cargar el JSON:', error));
+    },
     validarFormulario: function() {
       // VALIDACIONES DE CAMPOS REQUERIDOS
       var forms = document.querySelectorAll('.needs-validation');
@@ -63,11 +178,11 @@ const app = createApp({
           form.classList.add('was-validated');
 
           if (form.checkValidity()) {
-            vm.guardarPaciente();
+            vm.guardarCita();
           }
         });
     },
-    guardarPaciente: async function(){
+    guardarCita: async function(){
       //Mostrar animación de carga
       this.mostrarAnimacion = true;
 
@@ -77,49 +192,48 @@ const app = createApp({
 
       try {
 
-        var data = await this.getKeys();
-      
-        if (data && data.estado) {         
+        var idUnico = this.generarIdUnico();
 
-          var data2 = await this.guardarFoto(this.paciente.docId + '-' + data.corr);
+        var data = await this.guardarReceta(idUnico);
+                
+        if (data && data[0] && data[0].archivo && data[0].archivo != "error") {
+          this.cita.arch_receta = data[0].archivo;
+        } 
 
-          if (data2 && data2[0] && data2[0].archivo && data2[0].archivo != "error") {
-            this.paciente.foto = data2[0].archivo;
-          } 
+        console.log(this.cita.arch_receta);
+        
+        var raw = JSON.stringify({
+          cita: this.cita,
+          datClinico: this.datClinico,
+        });
+        console.log(this.cita);
+        console.log(this.datClinico);
+        var requestOptions = {
+          method: "POST",
+          headers: { "Content-Type": "application/json; charset=utf-8" },
+          body: raw,
+          redirect: "follow",
+        };
 
-          this.paciente.correlativo = data.corr;
-          var raw = JSON.stringify({
-            paciente: this.paciente,
-            datClinico: this.datClinico,
+        fetch(apiEndpoint + 'guardarCita',requestOptions)
+          .then(response => {         
+            return response.json();
+          })
+          .then(respuesta => {
+            if (respuesta.estado) {
+              this.modalSuccess(respuesta.desc).then(() => {
+                location.reload(true);
+              });
+            } else {
+              btnGuardar.disabled = false;
+              this.modalError(respuesta.desc);
+            }
+          })
+          .catch((error) => {
+            this.modalErrorApi(error);
+            btnGuardar.disabled = false;
+            this.mostrarAnimacion = false;
           });
-          console.log(this.paciente)
-          var requestOptions = {
-            method: "POST",
-            headers: { "Content-Type": "application/json; charset=utf-8" },
-            body: raw,
-            redirect: "follow",
-          };
-  
-          fetch(apiEndpoint + 'guardarPaciente',requestOptions)
-            .then(response => {         
-              return response.json();
-            })
-            .then(respuesta => {
-              if (respuesta.estado) {
-                this.modalSuccess(respuesta.desc).then(() => {
-                  location.reload(true);
-                });
-              } else {
-                this.modalError(respuesta.desc);
-              }
-            })
-            .catch((error) => {
-              this.modalErrorApi(error);
-              this.mostrarAnimacion = false;
-            });
-        } else {
-          this.modalError('Error inesperado al obtener las Keys del paciente.');
-        }
         
       } catch (error) {
         this.modalErrorApi(error)
@@ -127,52 +241,37 @@ const app = createApp({
         this.mostrarAnimacion = false;
       }
     },
-    getKeys: async function() {
-      var raw = JSON.stringify({
-        paciente: this.paciente,
-      });
-    
-      var requestOptions = {
-        method: "POST",
-        headers: { "Content-Type": "application/json; charset=utf-8" },
-        body: raw,
-        redirect: "follow",
-      };
-    
-      try {
-        const response = await fetch(apiEndpoint + 'getKeys', requestOptions);
-        const datos = await response.json();
-    
-        if (datos.estado) {
-          return datos;
-        } else {
-          this.modalError(datos.desc);
-          return datos;  // Puedes retornar un valor específico aquí si quieres manejar errores de otra manera
-        }
-      } catch (error) {
-        return null;
-      }
+    generarIdUnico: function() {
+      return Date.now().toString(36) + Math.random().toString(36).substr(2);
     },    
-    guardarFoto: async function (nombre) {
+    guardarReceta: async function (idUnico) {
       const formData = new FormData();
       const fileInputs = document.querySelectorAll('#formFile');
       let archivoCargado = false;
       
-
-      fileInputs.forEach(fileLput => {
-          // Añade el archivo de cada elemento al FormData
-          if (fileLput.files && fileLput.files.length > 0) {
-              archivoCargado = true;
-              formData.append('ARCHIVO[]', fileLput.files[0]);
-              formData.append('fileName[]', nombre);
-          }
-      });
+      let fileName;
+      fileInputs.forEach(fileInput => {
+        // Asegúrate de que el input tenga archivos seleccionados
+        if (fileInput.files && fileInput.files.length > 0) {
+            archivoCargado = true;
+    
+            // Obtén el nombre del archivo seleccionado
+            const fullFileName = fileInput.files[0].name; // Nombre completo con extensión
+            const fileNameWithoutExtension = fullFileName.split('.').slice(0, -1).join('.'); // Solo el nombre sin la extensión
+    
+            fileName = fileNameWithoutExtension + "-" + idUnico; // Usa el nombre sin extensión
+            
+            formData.append('ARCHIVO[]', fileInput.files[0]);
+            formData.append('fileName[]', fileName);
+        }
+    });
+      
 
       if (!archivoCargado) {
         return;
       }
       
-      formData.append('ROOT', 'foto_paciente');
+      formData.append('ROOT', 'receta_medica');
       
       return new Promise((resolve, reject) => {
         $.ajax({

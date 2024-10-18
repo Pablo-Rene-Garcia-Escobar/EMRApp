@@ -25,3 +25,19 @@
         0 -1px 0 rgb(55, 55, 55); /* Sombra hacia arriba */
     /*--*/
 }
+
+
+.form-title h2 {
+    font-weight: lighter;
+}
+
+.title-p-1 {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end; /* Alinea a la derecha */    
+}
+
+.col-6 {
+    padding-left: 0;
+    padding-right: 0;
+}

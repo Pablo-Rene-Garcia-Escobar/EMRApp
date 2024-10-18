@@ -258,7 +258,7 @@ function guardarPaciente() {
         $resul = _queryBindNoCommit($conexion, $params, $strInsDatosClinicos);
 
         if (!$resul) {
-            throw new Exception("Error inesperado al intentar guardar la información personal del paciente.");
+            throw new Exception("Error inesperado al intentar guardar la información biométrica y vital del paciente.");
         }
 
         _queryCommit($conexion);

@@ -99,7 +99,6 @@ const app = createApp({
             paciente: this.paciente,
             datClinico: this.datClinico,
           });
-          console.log(this.paciente)
           var requestOptions = {
             method: "POST",
             headers: { "Content-Type": "application/json; charset=utf-8" },
