@@ -75,7 +75,7 @@ function guardarRegistro()
             ':user_pass' => password_hash($data['password'], PASSWORD_BCRYPT, ['cost' => 5]),
             ':rol_id' => 1,
         );
-
+//
         if (_queryBindCommit($params, $strInsRegistro)) {
             return array(
                 'estado' => true,
