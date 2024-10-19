@@ -8,6 +8,9 @@ switch ($_POST['ROOT']) {
     case 'foto_paciente':
         $RUTA = 'C:/xampp/htdocs/EMRApp/adjunto/FotosPacientes/';
         break;
+    case 'receta_medica':
+        $RUTA = 'C:/xampp/htdocs/EMRApp/adjunto/ArchivosRecetas/';
+        break;
 }
 
 try {

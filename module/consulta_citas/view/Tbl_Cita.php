@@ -24,25 +24,25 @@
                 </div>
             </div>
             <div class="card-body">
-                <table id="example" class="table table-striped" style="width: 100%" ref="tablePacientes">
+                <table id="example" class="table table-striped" style="width: 100%" ref="tableCitas">
                     <thead>
                         <tr>
+                            <th>Cita</th>
                             <th>Id - DPI</th>
-                            <th>Nombre</th>
-                            <th>Correo</th>
-                            <th>Contaco de Emergencia</th>
-                            <th>Tipo de Sangre</th>
+                            <th>Nombre de Paciente</th>
+                            <th>Fecha de Cita</th>
+                            <th>Doctor que Atendio</th>
                             <th>Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr v-for="paciente in pacientes">
-                            <td>{{paciente.PAC_CORR}}-{{paciente.PAC_DOCNUM}}</td>
-                            <td>{{paciente.NOMBRE}}</td>
-                            <td>{{paciente.PAC_CORREO}}</td>
-                            <td>{{paciente.PAC_TELEFONO_EMG}}</td>
-                            <td>{{paciente.TIPO_SANGRE}}</td>
-                            <td><a class="btn btn-primary" :href="`verPaciente.php?DOC=${paciente.PAC_DOCNUM}&CORR=${paciente.PAC_CORR}`">Ver</a></td>
+                        <tr v-for="cita in citas">
+                            <td>{{cita.CM_CORR}}-{{cita.CM_ANIO}}</td>
+                            <td>{{cita.PAC_CORR}}-{{cita.PAC_DOCNUM}}</td>
+                            <td>{{cita.NOMBRE}}</td>
+                            <td>{{cita.CM_FECHA_CITA}}</td>
+                            <td>{{cita.DOCTOR}}</td>
+                            <td><a class="btn btn-primary" :href="`verCita.php?cm_corr=${cita.CM_CORR}&cm_anio=${cita.CM_ANIO}`">Ver</a></td>
                         </tr>
                     </tbody>
                 </table>
@@ -55,7 +55,7 @@
     <script src="/EMRApp/include/js_lib/dataTable/2.1.0.js"></script>
     <script src="/EMRApp/include/js_lib/sweetAlert2/11.12.3.js"></script>
     <script src="/EMRApp/include/js_lib/VUEjs/3.4.33.js"></script>
-    <script src="/EMRApp/module/consulta_pacientes/js/Tbl_Paciente.js"></script>
+    <script src="/EMRApp/module/consulta_citas/js/Tbl_Cita.js"></script>
     
 </body>
 

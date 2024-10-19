@@ -22,7 +22,9 @@ if (!(isset($_SESSION['usuario_logeado']) and $_SESSION['usuario_logeado'])){
                 <ul id="modulosList">
                     <div class="profile">
                         <img style="border-radius: 50%; border: 4px solid #d3d3d3; object-fit: cover;" src="/EMRApp/include/Images/user.png" alt="profile pic">
-                        <span><?php echo $_SESSION['nombre1']. ' ' . $_SESSION['apellido1']?></span>
+                        <span style="color: #F5F5F5; font-size: 24px; font-family: Arial, sans-serif;">
+                            <?php echo $_SESSION['nombre1']. ' ' . $_SESSION['apellido1'] ?>
+                        </span>
                     </div>
 
                     <div class="indicator" id="indicator"></div>

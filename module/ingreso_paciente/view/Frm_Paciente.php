@@ -145,7 +145,7 @@
 
           <div class="form-seccion-3">
             <div class="form-title">
-              <h2>Datos Clínicos</h2>
+              <h2>Datos Vitales y Biométricos</h2>
               <div class="mb-3">
                 <div class="row">
 

@@ -209,6 +209,9 @@ const app = createApp({
         })
         .catch(error => console.error('Error al cargar el JSON:', error));
     },
+    ingresarCita: function () {
+      window.location.href = 'http://localhost/EMRApp/ingresoCita.php?pac_corr='+ this.paciente.PAC_CORR +'&pac_docnum=' + this.paciente.PAC_DOCNUM;
+    },
     modalErrorApi: function (error) {
       Swal.fire({
         icon: "error", 
