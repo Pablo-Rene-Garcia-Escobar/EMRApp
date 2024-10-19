@@ -1,4 +1,4 @@
-var apiEndpoint = 'http://localhost/EMRApp/module/consulta_citas/function/ajax_functions.php?FUNC=';
+var apiEndpoint = '/EMRApp/module/consulta_citas/function/ajax_functions.php?FUNC=';
 var Headers = {
   json: { header: 'Content-Type', value: 'application/json' },
   form: { header: 'Content-Type', value: 'application/x-www-form-urlencoded' }
@@ -44,7 +44,14 @@ const app = createApp({
                 this.dataTable = $(this.$refs.tableCitas).DataTable({
                     language: {
                         url: '/EMRApp/JSON_api/DataTable/2.1.6_es-MX.json',
-                    }
+                    },
+                    dom: "<'row'<'col-md-4'l><'col-md-6'><'col-md-2'f>>" + // Fila con el filtro a la derecha
+                        "<'row'<'col-md-12'B>>" + // Fila para los botones de exportación
+                        "<'row'<'col-md-12'tr>>" + // Fila para la tabla
+                        "<'row'<'col-md-5'i><'col-md-7'p>>", // Información y paginación
+                        buttons: [
+                          'copy', 'csv', 'excel', 'pdf', 'print'
+                      ]
                 });
             });          
             })

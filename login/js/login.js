@@ -1,5 +1,5 @@
 var apiEndpoint =
-  "http://localhost/EMRApp/login/function/ajax_functions.php?FUNC=";
+  "/EMRApp/login/function/ajax_functions.php?FUNC=";
 var Headers = {
   json: { header: "Content-Type", value: "application/json" },
   form: { header: "Content-Type", value: "application/x-www-form-urlencoded" },

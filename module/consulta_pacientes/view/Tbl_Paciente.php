@@ -8,6 +8,7 @@
 
 <link rel="stylesheet" href="/EMRApp/include/css_lib/bootstrap/5.0.2.css" />
 <link rel="stylesheet" href="/EMRApp/include/css_lib/dataTable/2.1.0.css" />
+<link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.7.1/css/buttons.dataTables.min.css">
 <link rel="icon" type="image/webp" href="/EMRApp/include/Images/esculapio1.webp">
 </head>
 
@@ -53,6 +54,13 @@
     <script src="/EMRApp/include/js_lib/JQuery/3.7.1.js"></script>
     <script src="/EMRApp/include/js_lib/bootstrap/5.0.2.js"></script>
     <script src="/EMRApp/include/js_lib/dataTable/2.1.0.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.7.1/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.7.1/js/buttons.flash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.7.1/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.7.1/js/buttons.print.min.js"></script>
     <script src="/EMRApp/include/js_lib/sweetAlert2/11.12.3.js"></script>
     <script src="/EMRApp/include/js_lib/VUEjs/3.4.33.js"></script>
     <script src="/EMRApp/module/consulta_pacientes/js/Tbl_Paciente.js"></script>

@@ -181,7 +181,7 @@
                   <label for="formFile" class="form-label">Archivo de Receta Médica</label>
                   <br>
                   <template v-if="cita.CM_ARCH_RECETA != null">
-                    <a :href="'http://localhost/EMRApp/adjunto/ArchivosRecetas/' + cita.CM_ARCH_RECETA" target="_blank">Archivo de receta médica</a>
+                    <a :href="'/EMRApp/adjunto/ArchivosRecetas/' + cita.CM_ARCH_RECETA" target="_blank">Archivo de receta médica</a>
                   </template>
                   <template v-else>
                     <strong>Receta médica no adjuntada</strong>
@@ -200,7 +200,7 @@
               <div class="col"></div>
               <div class="col-2">
                 <a 
-                  :href="'http://localhost/EMRApp/ingresoCita.php?pac_corr=' + cita.PAC_CORR + '&pac_docnum=' + cita.PAC_DOCNUM + '&cm_corr=' + cita.CM_CORR + '&cm_anio=' + cita.CM_ANIO" class="btn btn-outline-info">
+                  :href="'/EMRApp/ingresoCita.php?pac_corr=' + cita.PAC_CORR + '&pac_docnum=' + cita.PAC_DOCNUM + '&cm_corr=' + cita.CM_CORR + '&cm_anio=' + cita.CM_ANIO" class="btn btn-outline-info">
                     Ingresar Cita de Seguimiento
                 </a>
               </div>
