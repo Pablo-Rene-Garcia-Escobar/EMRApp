@@ -1,4 +1,4 @@
-var apiEndpoint = 'http://localhost/EMRApp/module/consulta_citas/function/ajax_functions.php?FUNC=';
+var apiEndpoint = '/EMRApp/module/consulta_citas/function/ajax_functions.php?FUNC=';
 var Headers = {
   json: { header: 'Content-Type', value: 'application/json' },
   form: { header: 'Content-Type', value: 'application/x-www-form-urlencoded' }

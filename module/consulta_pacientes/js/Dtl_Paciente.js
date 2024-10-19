@@ -1,5 +1,5 @@
-var apiEndpoint = 'http://localhost/EMRApp/module/consulta_pacientes/function/ajax_functions.php?FUNC=';
-var apiEndpoint2 = 'http://localhost/EMRApp/module/ingreso_paciente/function/ajax_functions.php?FUNC=';
+var apiEndpoint = '/EMRApp/module/consulta_pacientes/function/ajax_functions.php?FUNC=';
+var apiEndpoint2 = '/EMRApp/module/ingreso_paciente/function/ajax_functions.php?FUNC=';
 var Headers = {
   json: { header: 'Content-Type', value: 'application/json' },
   form: { header: 'Content-Type', value: 'application/x-www-form-urlencoded' }
@@ -210,7 +210,7 @@ const app = createApp({
         .catch(error => console.error('Error al cargar el JSON:', error));
     },
     ingresarCita: function () {
-      window.location.href = 'http://localhost/EMRApp/ingresoCita.php?pac_corr='+ this.paciente.PAC_CORR +'&pac_docnum=' + this.paciente.PAC_DOCNUM;
+      window.location.href = '/EMRApp/ingresoCita.php?pac_corr='+ this.paciente.PAC_CORR +'&pac_docnum=' + this.paciente.PAC_DOCNUM;
     },
     modalErrorApi: function (error) {
       Swal.fire({

@@ -18,7 +18,7 @@ function _connectDB(){
     // Parámetros de conexión
     $remoto = "(DESCRIPTION = (ADDRESS = (PROTOCOL = TCP)(HOST = localhost)(PORT = 1521)) (CONNECT_DATA = (SID = EMRDB)))";
     $usuario = "EMR_ACCESSUSER";
-    $contraseña = "4CC3SS4S3R";
+    $contraseña = "ACC3SS4S3R";
 
     // Establecer la conexión
     $conexion = oci_connect($usuario, $contraseña, $remoto, 'AL32UTF8');
