@@ -81,7 +81,6 @@
                       id="nombre2"
                       v-model="dataRegistro.nombre2"
                       placeholder="Segundo Nombre"
-                      :required="!required"
                     />
                   </div>
                 </div>
@@ -105,7 +104,6 @@
                       id="apellido2"
                       v-model="dataRegistro.apellido2"
                       placeholder="Segundo Apellido"
-                      :required="!required"
                     />
                   </div>
                 </div>

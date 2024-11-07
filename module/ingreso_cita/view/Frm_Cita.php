@@ -43,7 +43,7 @@
                 </div>
                 <div class="col-6">
                   <label for="validationCustom01 validationCustom02 validationCustom03" class="form-label">Nombre del paciente</label>
-                  <input type="text" class="form-control" id="validationCustom01" placeholder="Identificación del paciente" v-model="datosPaciente.NOMBRE" :required="required" disabled>
+                  <input type="text" class="form-control" id="validationCustom01" placeholder="Nombre completo" v-model="datosPaciente.NOMBRE" :required="required" disabled>
                 </div>
               </div>
             </div>

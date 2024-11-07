@@ -39,7 +39,7 @@
                   <input type="text" class="form-control" id="validationCustom01" placeholder="Primer Nombre" v-model="paciente.nombre1" :required="required">
                 </div>
                 <div class="col">                  
-                  <input type="text" class="form-control" id="validationCustom02" placeholder="Segundo Nombre" v-model="paciente.nombre2" :required="required">
+                  <input type="text" class="form-control" id="validationCustom02" placeholder="Segundo Nombre (Opcional)" v-model="paciente.nombre2" >
                 </div>
                 <div class="col">                  
                   <input type="text" class="form-control" id="validationCustom03" placeholder="Tercer Nombre (Opcional)" v-model="paciente.nombre3">
@@ -54,7 +54,7 @@
                   <input type="text" class="form-control" id="validationCustom04" placeholder="Primer Apellido" v-model="paciente.apellido1" :required="required">
                 </div>
                 <div class="col">                  
-                  <input type="text" class="form-control" id="validationCustom05" placeholder="Segundo Apellido" v-model="paciente.apellido2" :required="required">
+                  <input type="text" class="form-control" id="validationCustom05" placeholder="Segundo Apellido (Opcional)" v-model="paciente.apellido2" >
                 </div>
                 <div class="col">                  
                   <input type="text" class="form-control" id="validationCustom06" placeholder="Apellido de Casado (Opcional)" v-model="paciente.apellidoC">
